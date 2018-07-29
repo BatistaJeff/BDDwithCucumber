@@ -12,3 +12,10 @@ Cenário: Deve alugar um filme com sucesso
 	Então o preço do aluguel será 3
 	E a data de entrega será no dia seguinte
 	E o estoque do filme será de 1 unidade
+	
+Cenário: Não deve alugar filme sem estoque
+
+	Dado um filme com estoque de 0 unidades
+	Quando alugar
+	Então não será possivel por falta de estoque
+	E o estoque do filme será de 0 unidade
