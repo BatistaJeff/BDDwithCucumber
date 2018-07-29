@@ -8,15 +8,23 @@
 
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
 		<dependency>
-			<groupId>io.cucumber</groupId>
+			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>3.0.0</version>
+			<version>1.2.5</version>
 		</dependency>
 
 
- 	</dependencies>
+		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 
 </project>
