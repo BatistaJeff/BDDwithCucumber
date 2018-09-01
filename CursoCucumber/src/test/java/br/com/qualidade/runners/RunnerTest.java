@@ -11,13 +11,13 @@ import cucumber.api.junit.Cucumber;
 				features = "src/test/resources/features/alugar_filme.feature",
 				glue = "br.com.qualidade.steps",
 				tags = {},
-				plugin = "pretty",
-				monochrome = true,
+				plugin = {"pretty","html:target/report-html","json:target/report-json"},
+				monochrome = false,
 				snippets =SnippetType.CAMELCASE,
 				dryRun = false,
 				strict = false
 				)
-public class Runner {
+public class RunnerTest {
 
 }
 

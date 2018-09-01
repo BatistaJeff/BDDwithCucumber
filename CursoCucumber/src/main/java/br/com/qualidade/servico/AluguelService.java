@@ -1,30 +1,42 @@
 package br.com.qualidade.servico;
 
-import java.util.Calendar;
-
 import br.com.qualidade.entidade.Filme;
 import br.com.qualidade.entidade.NotaAluguel;
+import br.com.qualidade.entidade.TipoAluguel;
 import br.com.qualidade.servico.util.DateUtils;
-import br.com.qualidade.servico.util.Valores;
-import br.com.qualidade.servico.util.ValoresUtils;
 
 public class AluguelService {
 
-	NotaAluguel nota;
+	private NotaAluguel notaAluguel;
 
-	
-	public NotaAluguel alugar(Filme filme) {
-		
-		if(filme.getEstoque() == 0) { 
+	public NotaAluguel alugar(Filme filme, TipoAluguel aluguel) {
+		if (filme.getEstoque() == 0) {
 			throw new RuntimeException("Filme sem estoque");
+		} else if (aluguel != null){
+			notaAluguel = new NotaAluguel();
+			switch (aluguel) {
+			case COMUM:
+				notaAluguel.setPreco(filme.getAluguel());
+				notaAluguel.setDataEntrega(DateUtils.obterDataDiferencaDias(1));
+				notaAluguel.setPontuacao(1);
+				break;
+
+			case EXTENDIDO:
+				notaAluguel.setPreco(filme.getAluguel() * 2);
+				notaAluguel.setDataEntrega(DateUtils.obterDataDiferencaDias(3));
+				notaAluguel.setPontuacao(2);
+				break;
+
+			case SEMANAL:
+				notaAluguel.setPreco(filme.getAluguel() * 3);
+				notaAluguel.setDataEntrega(DateUtils.obterDataDiferencaDias(7));
+				notaAluguel.setPontuacao(3);
+				break;
+			}
+			filme.setEstoque(filme.getEstoque() - 1);
 		}
-		this.nota = new NotaAluguel();
-		this.nota.setPreco(filme.getAluguel());
-		
-		nota.setDataEntrega(DateUtils.obterDataDiferencaDias(1));
-		filme.setEstoque(filme.getEstoque() - ValoresUtils.VALOR_A_SER_DADO_BAIXA);
-		
-		return this.nota;
+		return notaAluguel;
 	}
+
 
 }

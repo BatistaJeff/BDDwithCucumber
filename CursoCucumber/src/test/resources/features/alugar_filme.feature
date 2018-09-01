@@ -1,4 +1,4 @@
-# language: pt
+#language:pt
 
 Funcionalidade: Alugar Filme
 	Como um usuário
@@ -8,14 +8,30 @@ Funcionalidade: Alugar Filme
 Cenário: Deve alugar um filme com sucesso
 	Dado um filme com estoque de 2 unidades
 	E que o preço do aluguel seja de R$ 3
+	E que o tipo de aluguel seja comum
 	Quando alugar
 	Então o preço do aluguel será 3
-	E a data de entrega será no dia seguinte
+	E a data de entrega será em 1 dia
 	E o estoque do filme será de 1 unidade
-	
+	 
 Cenário: Não deve alugar filme sem estoque
-
 	Dado um filme com estoque de 0 unidades
 	Quando alugar
 	Então não será possivel por falta de estoque
 	E o estoque do filme será de 0 unidade
+
+Esquema do Cenário: Deve dar condições conforme tipo de <tipo>
+	Dado um filme com estoque de 2 unidades
+	E que o preço do aluguel seja R$ <preco>
+	E que o tipo de aluguel seja <tipo>
+	Quando alugar
+	Então o preço do aluguel será R$ <valor>
+	E a data de entrega será em <qtdDias> dias
+	E a pontuação recebida será de <pontuacao> pontos
+	
+Exemplos:
+	| preco |tipo		 		 | valor | qtdDias | pontuacao |
+	|		4		|	extendido	 |	8		 | 		3		 | 		2			 |
+	|		4		|	comum		 	 |	4		 | 		1		 |		1			 |
+	|		5		|	semanal	 	 |	15	 | 		7		 |		3			 |
+	
